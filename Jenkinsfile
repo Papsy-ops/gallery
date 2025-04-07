@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/Papsy-ops/gallery.git'
+                git 'https://github.com/Papsy-ops/PI1.git'
             }
         }
         stage('Verify MongoDB Connection') {
@@ -12,16 +12,16 @@ pipeline {
                 sh 'mongosh "mongodb+srv://papetuanarina:FMySwBDqf2O93rar@ip1.90y7ear.mongodb.net/?retryWrites=true" --eval "show dbs"'
             }
         }
-         {
-        stage('Install Dependencies') {
+         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
         }
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                sh 'npm test &'
             }
+            
         }
         stage('Deploy to Render') {
             steps {
@@ -44,7 +44,7 @@ pipeline {
                 --data '{
                     "text": "Deployment Successful! The app has been successfully deployed. \nBuild ID: ${env.BUILD_ID} \nBuild URL: ${env.BUILD_URL} \nView it at https://pi1-wtoa.onrender.com"
                 }' \
-                https://hooks.slack.com/services/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
+                https://hooks.slack.com/services/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
                 """
             }
         }
@@ -62,7 +62,7 @@ pipeline {
                 --data '{
                     "text": "Deployment Failed! Check Jenkins logs for details. \nBuild ID: ${env.BUILD_ID} \nBuild URL: ${env.BUILD_URL}"
                 }' \
-                https://hooks.slack.com/services/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
+                https://hooks.slack.com/services/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
                 """
             }
         }
