@@ -29,7 +29,13 @@
   </div>
   <div class="row">
     <h1>MILESTONE 2</h1>
-   </div>  
+   </div>
+   <div class="row">
+    <h1>MILESTONE 3</h1>
+   </div>
+   <div class="row">
+    <h1>MILESTONE 4</h1>
+   </div>
     <div class="container">
         <h1>Image Upload </h1>
         <%= typeof msg != 'undefined' ? msg : '' %>
@@ -47,20 +53,8 @@
         </form>
         <hr>
         <br>
+
         
-          <div class="row">
-            <% images.forEach(function(image){ %>
-
-              <div class="column">
-
-                <a href="/image/<%= image._id %>"> <img src="<%= image.path %>" class="responsive-img" alt="<%= image.name %>"> </a>
-              </div>
-            <% }); %>  
-          </div>
-            
-              
-            
-        <!-- <img src="<%= typeof file != 'undefined' ? file : '' %>" class="responsive-img" alt=""> -->
     </div>
     
     
