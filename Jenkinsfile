@@ -44,7 +44,7 @@ pipeline {
                 --data '{
                     "text": "Deployment Successful! The app has been successfully deployed. \nBuild ID: ${env.BUILD_ID} \nBuild URL: ${env.BUILD_URL} \nView it at https://pi1-wtoa.onrender.com"
                 }' \
-                https://hooks.slack.com/services/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
+                https://hooks.slack.com/services/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
                 """
             }
         }
@@ -62,7 +62,7 @@ pipeline {
                 --data '{
                     "text": "Deployment Failed! Check Jenkins logs for details. \nBuild ID: ${env.BUILD_ID} \nBuild URL: ${env.BUILD_URL}"
                 }' \
-                https://hooks.slack.com/services/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
+                https://hooks.slack.com/services/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
                 """
             }
         }
