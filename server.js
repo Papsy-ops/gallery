@@ -13,7 +13,8 @@ const app = express();
 
 // connecting the database
 
-const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
+//const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://papetuanarina:FMySwBDqf2O93rar@ip1.90y7ear.mongodb.net/darkroom-dev?retryWrites=true&w=majority"
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
     if (err) {
         console.log(err)
