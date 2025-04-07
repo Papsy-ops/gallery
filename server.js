@@ -10,8 +10,7 @@ let image = require('./routes/image');
 
 // Initializing the app
 const app = express();
-<<<<<<< HEAD
-=======
+
 
 // connecting the database
 
@@ -31,8 +30,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 //     console.log('Database connected successfully')
 // })
 
-
->>>>>>> test
 
 // Connecting to the database using async/await
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://papetuanarina:FMySwBDqf2O93rar@ip1.90y7ear.mongodb.net/darkroom-dev?retryWrites=true&w=majority";
