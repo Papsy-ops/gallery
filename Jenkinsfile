@@ -1,6 +1,13 @@
 pipeline {
     agent any
 
+    environment {
+        MONGODB_URI = 'mongodb+srv://papetuanarina:FMySwBDqf2O93rar@ip1.90y7ear.mongodb.net/?retryWrites=true'
+        SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
+        EMAIL_TO = 'papetua.narina@student.moringaschool.com'
+        EMAIL_FROM = 'papetua.narina@student.moringaschool.com'
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
@@ -9,10 +16,10 @@ pipeline {
         }
         stage('Verify MongoDB Connection') {
             steps {
-                sh 'mongosh "mongodb+srv://papetuanarina:FMySwBDqf2O93rar@ip1.90y7ear.mongodb.net/?retryWrites=true" --eval "show dbs"'
+                sh "mongosh '${env.MONGODB_URI}' --eval 'show dbs'"
             }
         }
-         stage('Install Dependencies') {
+        stage('Install Dependencies') {
             steps {
                 sh 'npm install'
             }
@@ -21,7 +28,6 @@ pipeline {
             steps {
                 sh 'npm test &'
             }
-            
         }
         stage('Deploy to Render') {
             steps {
@@ -35,8 +41,8 @@ pipeline {
             script {
                 emailext subject: 'Deployment Successful',
                     body: "The deployment of the project was successful!",
-                    to: 'papetua.narina@student.moringaschool.com',
-                    from: 'papetua.narina@student.moringaschool.com'
+                    to: "${env.EMAIL_TO}",
+                    from: "${env.EMAIL_FROM}"
 
                 // Send Slack notification on success
                 sh """
@@ -44,7 +50,7 @@ pipeline {
                 --data '{
                     "text": "Deployment Successful! The app has been successfully deployed. \nBuild ID: ${env.BUILD_ID} \nBuild URL: ${env.BUILD_URL} \nView it at https://pi1-wtoa.onrender.com"
                 }' \
-                https://hooks.slack.com/services/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
+                ${env.SLACK_WEBHOOK}
                 """
             }
         }
@@ -53,8 +59,8 @@ pipeline {
             script {
                 emailext subject: 'Deployment Failed',
                     body: "The deployment of the project failed. Check Jenkins logs for details.",
-                    to: 'papetua.narina@student.moringaschool.com',
-                    from: 'papetua.narina@student.moringaschool.com'
+                    to: "${env.EMAIL_TO}",
+                    from: "${env.EMAIL_FROM}"
 
                 // Send Slack notification on failure
                 sh """
@@ -62,7 +68,7 @@ pipeline {
                 --data '{
                     "text": "Deployment Failed! Check Jenkins logs for details. \nBuild ID: ${env.BUILD_ID} \nBuild URL: ${env.BUILD_URL}"
                 }' \
-                https://hooks.slack.com/services/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
+                ${env.SLACK_WEBHOOK}
                 """
             }
         }
