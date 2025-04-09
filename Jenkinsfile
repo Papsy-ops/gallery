@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git 'https://github.com/Papsy-ops/PI1.git'
+                git 'https://github.com/Papsy-ops/gallery.git'
             }
         }
         stage('Verify MongoDB Connection') {
