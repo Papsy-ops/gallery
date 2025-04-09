@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         MONGODB_URI = 'mongodb+srv://papetuanarina:FMySwBDqf2O93rar@ip1.90y7ear.mongodb.net/?retryWrites=true'
-        SLACK_WEBHOOK = 'https://hooks.slack.com/services/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'
+        SLACK_WEBHOOK = credentials ('papetua_ip1')
         EMAIL_TO = 'papetua.narina@student.moringaschool.com'
         EMAIL_FROM = 'papetua.narina@student.moringaschool.com'
     }
